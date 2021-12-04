@@ -1,12 +1,13 @@
 var selectedRow = null;
 
-function onFormSubmit(){
+function onFormSubmit(e){
+    event.preventDefault();
     var formData=readFormData();
-    if(selectedRow==null)
+    if(selectedRow==null){
       insertNewRecord(formData);
-      else
+    }else{
       updateRecord(formData);
-      
+    }  
     resetForm();
  
   }
