@@ -1,12 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Page</title>
+    <title>Parallax Sample</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <style type="text/css">
+        .background {
+            background: url('./assets/images/parallax-and-infinite-scroll.jpg') repeat;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            /* height: 300%; adjust the height according to the length of contents   */
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .contents {
+            color: red;
+            font-family: arial;
+            width: 600px;
+            margin: auto;
+            line-height: 20px;
+            font-size: 16px;
+        }
+    </style>
+    <script type="text/javascript">
+        function parallax() {
+            var scrolled = $(window).scrollLeft();
+            $('.background').css('top', -(scrolled * 0.2) + 'px');
+        }
+        $(window).scroll(function () {
+            parallax();
+        });
+    </script>
 </head>
+
 <body>
-    <div class="container"></div>
+    <div class="background"></div>
+    <div class="contents">
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/05062014011728AM10282013052125AMSQL-Server-function-book.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img
+                src="./assets/images/05062014013656AM12122011080816AMBuildingStandaloneDataDrivenApplicationsUsingSQLServerCompact4.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/11032016044309AMbook-small (1).jpg" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/11032016044309AMbook-small.jpg">
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/12172014020052AMFunctions.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/05062014011728AM10282013052125AMSQL-Server-function-book.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img
+                src="./assets/images/05062014013656AM12122011080816AMBuildingStandaloneDataDrivenApplicationsUsingSQLServerCompact4.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/11032016044309AMbook-small (1).jpg" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="/assets/images/12172014020052AMFunctions.png" />
+        </div>
+        <div>
+            <p>
+                Sample Image</p>
+            <img src="./assets/images/05062014011728AM10282013052125AMSQL-Server-function-book.png" />
+        </div>
+    </div>
 </body>
+
 </html>

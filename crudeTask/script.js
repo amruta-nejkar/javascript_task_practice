@@ -1,56 +1,69 @@
+var arr = [];
+
 var selectedRow = null;
 
 function onFormSubmit(e){
     event.preventDefault();
-    var formData=readFormData();
-    if(selectedRow==null){
-      insertNewRecord(formData);
+    var formData = readFormData();
+    if(selectedRow === null){
+        insertNewRecord(formData);
     }else{
-      updateRecord(formData);
-    }  
+        updateRecord(formData)
+    }
     resetForm();
- 
-  }
-function readFormData() {
-    var formData = {};
+
+    }
+
+
+// Read operation using this function
+function readFormData(){
+    let formData = {};
     formData["fullName"] = document.getElementById("fullName").value;
     formData["email"] = document.getElementById("email").value;
     return formData;
 }
 
-function insertNewRecord(data) {
+// Create operation
+function insertNewRecord(data){
+    arr.push({
+        fullName: data.fullName,
+        email: data.email,
+        
+    });
+
     var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
-    cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.fullName;
-    cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.email;
-    cell3 = newRow.insertCell(2);
-    cell3.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                       <a onClick="onDelete(this)">Delete</a>`;
+    // var newRow = table.insertRow(table.length);
+    arr.map((item,index) => {
+        // console.log(item);
+        table.innerHTML = `
+        <td>${item.fullName}</td>
+        <td>${item.email}</td>
+        <td>
+                <a href="#" onClick='onEdit(${index})'>Edit</a>
+                <a href="#" onClick='onDelete(${index})'>Delete</a>
+        </td>
+        `;
+    });   
 }
 
-function resetForm() {
-    document.getElementById("fullName").value = "";
-    document.getElementById("email").value = "";
+function resetForm(){
+    document.getElementById('fullName').value = '';
+    document.getElementById('email').value = '';
     selectedRow = null;
 }
+function updateRecord(formData){
 
-function onEdit(td) {
-    selectedRow = td.parentElement.parentElement;
-    document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("email").value = selectedRow.cells[1].innerHTML;
- 
-}
-function updateRecord(formData) {
-    selectedRow.cells[0].innerHTML = formData.fullName;
-    selectedRow.cells[1].innerHTML = formData.email; 
+    
 }
 
-function onDelete(td) {
-    if (confirm('Are you sure to delete this record ?')) {
-        row = td.parentElement.parentElement;
-        document.getElementById("employeeList").deleteRow(row.rowIndex);
-        resetForm();
-    }
+// function onEdit(td){
+//  selectedRow=td.parentElement.parentElement;
+// }
+
+function onDelete(td){
+  if("are you delete this record?"){
+    arr.splice(0,0);
+   document.getElementById("employeeList").deleteRow(row.index)
+  }
+//   resetForm();
 }
